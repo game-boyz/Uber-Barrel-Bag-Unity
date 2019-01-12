@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using PhysicsObjects;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerMovement : physicsObjects
+public class PlayerMovement : PhysicsObject
 {
 
     public float maxSpeed = 7;

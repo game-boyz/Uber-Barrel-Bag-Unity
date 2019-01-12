@@ -1753,13 +1753,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c3317723948b1428f71ea98bdb4724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facingRight: 1
-  jump: 0
-  moveForce: 100
-  maxSpeed: 100
-  jumpForce: 200
-  groundCheck: {fileID: 2007151659}
-  distToGround: 0
+  minGroundNormalY: 0.65
+  gravityModifier: 1
+  maxSpeed: 7
+  jumpTakeOffSpeed: 10
 --- !u!1 &2007151658
 GameObject:
   m_ObjectHideFlags: 0
