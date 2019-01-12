@@ -1757,6 +1757,7 @@ MonoBehaviour:
   gravityModifier: 1
   maxSpeed: 7
   jumpTakeOffSpeed: 10
+  animator: {fileID: 1904971910}
 --- !u!1 &2007151658
 GameObject:
   m_ObjectHideFlags: 0

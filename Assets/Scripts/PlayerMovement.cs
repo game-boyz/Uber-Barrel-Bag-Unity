@@ -8,15 +8,14 @@ public class PlayerMovement : PhysicsObject
 
     public float maxSpeed = 7;
     public float jumpTakeOffSpeed = 7;
+    public Animator animator;
 
     private SpriteRenderer spriteRenderer;
-    private Animator animator;
 
     // Use this for initialization
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
     }
 
     protected override void ComputeVelocity()
@@ -25,6 +24,7 @@ public class PlayerMovement : PhysicsObject
 
         move.x = Input.GetAxis("Horizontal");
 
+        // Handle movement controls / physics
         if (Input.GetButtonDown("Jump") && grounded)
         {
             velocity.y = jumpTakeOffSpeed;
@@ -52,9 +52,14 @@ public class PlayerMovement : PhysicsObject
             }
         }
 
+        targetVelocity = move * maxSpeed;
+
+        // Handle updating animations
+        // The transitions in the Player Animation Controller will listen for these values
         animator.SetBool("grounded", grounded);
         animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
+        animator.SetFloat("velocityY", velocity.y / maxSpeed);
 
-        targetVelocity = move * maxSpeed;
+
     }
 }
