@@ -3,12 +3,13 @@ using PhysicsObjects;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerMovement : PhysicsObject
+public class PlayerController : PhysicsObject
 {
 
     public float maxSpeed = 7;
     public float jumpTakeOffSpeed = 7;
     public Animator animator;
+    public SpriteRenderer weapon;
 
     private bool inputLock = false;
 
@@ -20,20 +21,27 @@ public class PlayerMovement : PhysicsObject
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    // Flip the character and child gameobjects
+    void FlipCharacter() {
+        spriteRenderer.transform.Rotate(0f, 180f, 0f);
+    }
+
     protected override void ComputeVelocity()
     {
         Vector2 move = Vector2.zero;
+        bool spriteFlipped = spriteRenderer.transform.eulerAngles.y < 181 && spriteRenderer.transform.eulerAngles.y > 179;
 
         move.x = Input.GetAxis("Horizontal");
 
-        if (Input.GetButtonDown("Fire1")) { // Fires when f key or left click is pressed
+        // Fires when f key or left click is pressed
+        if (Input.GetButtonDown("Fire1")) {
             animator.SetTrigger("Firing");
             inputLock = true;
         } else {
             inputLock = false;
         }
 
-        // Handle movement controls / physics
+        // Handle jump controls / physics
         if (Input.GetButtonDown("Jump") && grounded && !inputLock)
         {
             velocity.y = jumpTakeOffSpeed;
@@ -46,18 +54,19 @@ public class PlayerMovement : PhysicsObject
             }
         }
 
+        // Handle horizontal movement and sprite flipping
         if (move.x > 0.01f && !inputLock)
         {
-            if (spriteRenderer.flipX == true)
+            if (spriteFlipped)
             {
-                spriteRenderer.flipX = false;
+                FlipCharacter();
             }
         }
         else if (move.x < -0.01f && !inputLock)
         {
-            if (spriteRenderer.flipX == false)
+            if (!spriteFlipped)
             {
-                spriteRenderer.flipX = true;
+                FlipCharacter();
             }
         }
 
@@ -68,7 +77,5 @@ public class PlayerMovement : PhysicsObject
         animator.SetBool("grounded", grounded);
         animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
         animator.SetFloat("velocityY", velocity.y / maxSpeed);
-
-
     }
 }
