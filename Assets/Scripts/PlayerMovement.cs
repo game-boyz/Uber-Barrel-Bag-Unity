@@ -10,6 +10,8 @@ public class PlayerMovement : PhysicsObject
     public float jumpTakeOffSpeed = 7;
     public Animator animator;
 
+    private bool inputLock = false;
+
     private SpriteRenderer spriteRenderer;
 
     // Use this for initialization
@@ -24,8 +26,15 @@ public class PlayerMovement : PhysicsObject
 
         move.x = Input.GetAxis("Horizontal");
 
+        if (Input.GetButtonDown("Fire1")) { // Fires when f key or left click is pressed
+            animator.SetTrigger("Firing");
+            inputLock = true;
+        } else {
+            inputLock = false;
+        }
+
         // Handle movement controls / physics
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (Input.GetButtonDown("Jump") && grounded && !inputLock)
         {
             velocity.y = jumpTakeOffSpeed;
         }
@@ -37,14 +46,14 @@ public class PlayerMovement : PhysicsObject
             }
         }
 
-        if (move.x > 0.01f)
+        if (move.x > 0.01f && !inputLock)
         {
             if (spriteRenderer.flipX == true)
             {
                 spriteRenderer.flipX = false;
             }
         }
-        else if (move.x < -0.01f)
+        else if (move.x < -0.01f && !inputLock)
         {
             if (spriteRenderer.flipX == false)
             {
