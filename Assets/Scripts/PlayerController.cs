@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using PhysicsObjects;
+using Weapons;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,7 +10,8 @@ public class PlayerController : PhysicsObject
     public float maxSpeed = 7;
     public float jumpTakeOffSpeed = 7;
     public Animator animator;
-    public SpriteRenderer weapon;
+    public SpriteRenderer weaponSprite;
+    public GameObject weapon;
 
     private bool inputLock = false;
 
@@ -32,14 +34,6 @@ public class PlayerController : PhysicsObject
         bool spriteFlipped = spriteRenderer.transform.eulerAngles.y < 181 && spriteRenderer.transform.eulerAngles.y > 179;
 
         move.x = Input.GetAxis("Horizontal");
-
-        // Fires when f key or left click is pressed
-        if (Input.GetButtonDown("Fire1")) {
-            animator.SetTrigger("Firing");
-            inputLock = true;
-        } else {
-            inputLock = false;
-        }
 
         // Handle jump controls / physics
         if (Input.GetButtonDown("Jump") && grounded && !inputLock)
