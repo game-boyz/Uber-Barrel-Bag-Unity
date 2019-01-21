@@ -10,6 +10,8 @@ namespace Weapons {
     }
 
     public class Weapon : MonoBehaviour {
+        public int type;
+
         // Update is called once per frame
         void Update() {
             // Fires when f key or left click is pressed

@@ -22,6 +22,18 @@ public class Weapon_Placeholder : MonoBehaviour
         
     }
 
+    private Weapon FindWeapon(int type) {
+        for (int i = 0; i < possible_weapons.Length; i++) {
+            Weapon weapon = possible_weapons[i];
+
+            if (weapon.GetComponent<Weapon>().type == type) {
+                return weapon;
+            }
+        }
+
+        return null;
+    }
+
     public bool SpawnWeapon(int type) {
         if (type != current_weapon_type) {
 
@@ -30,9 +42,13 @@ public class Weapon_Placeholder : MonoBehaviour
                 GameObject.Destroy(child.gameObject);
             }
 
+            Weapon new_weapon = FindWeapon(type);
+
             // Save the new weapon type and then create an instance of the weapon as a child of Weapon_Placeholder
-            current_weapon_type = type;
-            Instantiate(possible_weapons[type], transform.position, transform.rotation).transform.parent = gameObject.transform;
+            if (new_weapon != null) {
+                current_weapon_type = type;
+                Instantiate(possible_weapons[type], transform.position, transform.rotation).transform.parent = gameObject.transform;
+            }
 
             return true;
         }
