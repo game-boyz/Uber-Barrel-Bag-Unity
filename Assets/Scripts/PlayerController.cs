@@ -16,11 +16,13 @@ public class PlayerController : PhysicsObject
     private bool inputLock = false;
 
     private SpriteRenderer spriteRenderer;
+    private Transform player_location;
 
     // Use this for initialization
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        player_location = GetComponent<Transform>();
     }
 
     // Flip the character and child gameobjects
@@ -71,5 +73,22 @@ public class PlayerController : PhysicsObject
         animator.SetBool("grounded", grounded);
         animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
         animator.SetFloat("velocityY", velocity.y / maxSpeed);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider) {
+
+        // Trigger a weapon pickup
+        if (collider.gameObject.CompareTag("Weapon_Pickup")) {
+            Weapon_Pickup weapon = collider.gameObject.GetComponent<Weapon_Pickup>();
+            Weapon_Placeholder player_weapon = player_location.Find("Weapon_Placeholder").gameObject.GetComponent<Weapon_Placeholder>();
+
+            // Spawn the 'picked up' weapon in the player's hands
+            bool picked_up = player_weapon.SpawnWeapon(weapon.type);
+
+            // Destroy the pickup
+            if (picked_up) {
+                Destroy(collider.gameObject);
+            }
+        }
     }
 }
