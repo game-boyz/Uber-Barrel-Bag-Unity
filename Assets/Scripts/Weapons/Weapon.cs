@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace Weapons {
     public static class Weapon_Constants {
-
-        // NOTE: The order of this enum matters until there is a better way to map GameObjects in Weapon_Placeholder
         public enum weapon_types { Pistol };
     }
 
     public class Weapon : MonoBehaviour {
+
+        // A weapon class inheriting from this class must specify its type
+        // Types can be retrieved from Weapon_Constant.weapon_types in the Weapons namespace
         public int type;
 
-        // Update is called once per frame
         void Update() {
             // Fires when f key or left click is pressed
             if (Input.GetButtonDown("Fire1")) {

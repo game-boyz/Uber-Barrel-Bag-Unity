@@ -10,17 +10,11 @@ public class Weapon_Placeholder : MonoBehaviour
     // This is filled with weapon prefabs in the unity inspector
     public Weapon[] possible_weapons;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         current_weapon_type = -1;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() {}
 
     private Weapon FindWeapon(int type) {
         for (int i = 0; i < possible_weapons.Length; i++) {

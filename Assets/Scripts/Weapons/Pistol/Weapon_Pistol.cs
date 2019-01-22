@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Weapons;
 
-public class Weapon_Pistol : Weapon
-{
+public class Weapon_Pistol : Weapon {
     public Animator animator;
 
     private void Awake() {

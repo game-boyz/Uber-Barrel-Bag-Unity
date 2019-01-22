@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Weapons;
 
-public class Weapon_Pickup : MonoBehaviour
-{
+public class Weapon_Pickup : MonoBehaviour {
+
+    // A weapon pickup class inheriting from this class must specify its type
+    // Types can be retrieved from Weapon_Constant.weapon_types in the Weapons namespace
     public int type;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {}
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() {}
 }

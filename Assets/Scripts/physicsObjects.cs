@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Obtained from Unity
+/// </summary>
 namespace PhysicsObjects {
     public class PhysicsObject : MonoBehaviour {
 

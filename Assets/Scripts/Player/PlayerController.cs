@@ -4,8 +4,7 @@ using Weapons;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerController : PhysicsObject
-{
+public class PlayerController : PhysicsObject {
 
     public float maxSpeed = 7;
     public float jumpTakeOffSpeed = 7;
@@ -19,8 +18,7 @@ public class PlayerController : PhysicsObject
     private Transform player_location;
 
     // Use this for initialization
-    void Awake()
-    {
+    void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         player_location = GetComponent<Transform>();
     }
@@ -30,38 +28,30 @@ public class PlayerController : PhysicsObject
         spriteRenderer.transform.Rotate(0f, 180f, 0f);
     }
 
-    protected override void ComputeVelocity()
-    {
+    protected override void ComputeVelocity() {
         Vector2 move = Vector2.zero;
         bool spriteFlipped = spriteRenderer.transform.eulerAngles.y < 181 && spriteRenderer.transform.eulerAngles.y > 179;
 
         move.x = Input.GetAxis("Horizontal");
 
         // Handle jump controls / physics
-        if (Input.GetButtonDown("Jump") && grounded && !inputLock)
-        {
+        if (Input.GetButtonDown("Jump") && grounded && !inputLock) {
             velocity.y = jumpTakeOffSpeed;
         }
-        else if (Input.GetButtonUp("Jump"))
-        {
-            if (velocity.y > 0)
-            {
+        else if (Input.GetButtonUp("Jump")) {
+            if (velocity.y > 0) {
                 velocity.y = velocity.y * 0.5f;
             }
         }
 
         // Handle horizontal movement and sprite flipping
-        if (move.x > 0.01f && !inputLock)
-        {
-            if (spriteFlipped)
-            {
+        if (move.x > 0.01f && !inputLock) {
+            if (spriteFlipped) {
                 FlipCharacter();
             }
         }
-        else if (move.x < -0.01f && !inputLock)
-        {
-            if (!spriteFlipped)
-            {
+        else if (move.x < -0.01f && !inputLock) {
+            if (!spriteFlipped) {
                 FlipCharacter();
             }
         }
@@ -77,7 +67,7 @@ public class PlayerController : PhysicsObject
 
     private void OnTriggerEnter2D(Collider2D collider) {
 
-        // Trigger a weapon pickup
+        // Trigger a weapon pickup on collsion with that type of object
         if (collider.gameObject.CompareTag("Weapon_Pickup")) {
             Weapon_Pickup weapon = collider.gameObject.GetComponent<Weapon_Pickup>();
             Weapon_Placeholder player_weapon = player_location.Find("Weapon_Placeholder").gameObject.GetComponent<Weapon_Placeholder>();
