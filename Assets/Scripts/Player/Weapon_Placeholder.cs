@@ -33,7 +33,7 @@ public class Weapon_Placeholder : MonoBehaviour
 
             // Delete current player weapon (and all other children of Weapon_Placeholder
             foreach (Transform child in transform) {
-                GameObject.Destroy(child.gameObject);
+                Destroy(child.gameObject);
             }
 
             Weapon new_weapon = FindWeapon(type);

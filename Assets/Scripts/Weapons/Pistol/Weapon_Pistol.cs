@@ -8,7 +8,7 @@ public class Weapon_Pistol : Weapon {
 
     private void Awake() {
         animator = GetComponent<Animator>();
-        type = (int)Weapon_Constants.weapon_types.Pistol;
+        type = (int)Weapon_Constants.Weapon_types.Pistol;
     }
 
     protected override void Fire() {

@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Weapons {
     public static class Weapon_Constants {
-        public enum weapon_types { Pistol };
+        public enum Weapon_types { Pistol };
     }
 
     public class Weapon : MonoBehaviour {
 
         // A weapon class inheriting from this class must specify its type
-        // Types can be retrieved from Weapon_Constant.weapon_types in the Weapons namespace
+        // Types can be retrieved from Weapon_Constant.Weapon_Types in the Weapons namespace
         public int type;
 
         void Update() {

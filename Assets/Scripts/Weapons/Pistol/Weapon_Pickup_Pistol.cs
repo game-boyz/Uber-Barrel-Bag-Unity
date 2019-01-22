@@ -5,7 +5,7 @@ using Weapons;
 
 public class Weapon_Pickup_Pistol : Weapon_Pickup {
     void Start() {
-        type = (int)Weapon_Constants.weapon_types.Pistol;
+        type = (int)Weapon_Constants.Weapon_types.Pistol;
     }
 
     void Update() {}
