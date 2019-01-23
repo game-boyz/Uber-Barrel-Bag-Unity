@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Weapons;
 
-public class Weapon_Pickup_Pistol : Weapon_Pickup {
+public class WeaponPickupPistol : WeaponPickup {
     void Start() {
-        type = (int)Weapon_Constants.Weapon_types.Pistol;
+        type = (int)WeaponConstants.WeaponTypes.Pistol;
     }
 
     void Update() {}

@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Weapon_Pickup
   - Enemy
+  - WeaponPickup
   layers:
   - Default
   - TransparentFX

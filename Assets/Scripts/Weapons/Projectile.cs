@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour {
     void Start() { }
 
     void Update() {
-        // Track how long the projectile 
+        // Track how long the projectile has been in the world
         timeAlive += Time.deltaTime;
 
         if (timeAlive > timeToLive && timeToLive >= 0) {
@@ -16,14 +16,9 @@ public class Projectile : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-
-    }
-
     private void OnCollisionEnter2D(Collision2D collision) {
         // Deal damage if necessary
         if (collision.gameObject.CompareTag("Enemy")) {
-            Debug.Log("I'm helping!@");
             collision.gameObject.GetComponent<EnemyController>().DealDamage(damage);
         }
 

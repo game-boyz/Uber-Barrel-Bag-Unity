@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Weapons {
-    public static class Weapon_Constants {
-        public enum Weapon_types { Pistol };
+    public static class WeaponConstants {
+        public enum WeaponTypes { Pistol };
     }
 
     public class Weapon : MonoBehaviour {

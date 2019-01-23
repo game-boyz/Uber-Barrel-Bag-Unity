@@ -7,6 +7,9 @@ public class EnemyController : PhysicsObject
     private SpriteRenderer spriteRenderer;
     public int health = 20;
     public float hitColorResetTime = 0.15f;
+    public Color hitColor = Color.red;
+    public Color originalColor = Color.white;
+
     private float timeTillColorReset = -1;
 
     void Awake() {
@@ -14,20 +17,23 @@ public class EnemyController : PhysicsObject
     }
 
     private void Update() {
-        Debug.Log($"{Time.time} < {timeTillColorReset}");
+
+        // Reset enemy hit color after the timeout
         if (Time.time > timeTillColorReset && timeTillColorReset > 0) {
-            //Debug.Log("dajskldajkl");
-            spriteRenderer.color = Color.white;
+            spriteRenderer.color = originalColor;
             timeTillColorReset = -1;
         }
     }
 
     public void DealDamage(int damage) {
-        timeTillColorReset = Time.time + hitColorResetTime;
-        Debug.Log($"{timeTillColorReset}");
+        // Damage the enemy
         health -= damage;
-        spriteRenderer.color = Color.red;
 
+        // Change its color to the hit color and then set a timeout to reset it
+        timeTillColorReset = Time.time + hitColorResetTime;
+        spriteRenderer.color = hitColor;
+
+        // When the enemy runs out of health, kill it
         if (health <= 0) {
             Destroy(gameObject, hitColorResetTime + 0.05f);
         }

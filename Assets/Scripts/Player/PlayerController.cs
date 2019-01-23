@@ -15,12 +15,11 @@ public class PlayerController : PhysicsObject {
     private bool inputLock = false;
 
     private SpriteRenderer spriteRenderer;
-    private Transform player_location;
+    private Transform playerLocation;
 
-    // Use this for initialization
     void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        player_location = GetComponent<Transform>();
+        playerLocation = GetComponent<Transform>();
     }
 
     // Flip the character and child gameobjects
@@ -68,15 +67,15 @@ public class PlayerController : PhysicsObject {
     private void OnTriggerEnter2D(Collider2D collider) {
 
         // Trigger a weapon pickup on collsion with that type of object
-        if (collider.gameObject.CompareTag("Weapon_Pickup")) {
-            Weapon_Pickup weapon = collider.gameObject.GetComponent<Weapon_Pickup>();
-            Weapon_Placeholder player_weapon = player_location.Find("Weapon_Placeholder").gameObject.GetComponent<Weapon_Placeholder>();
+        if (collider.gameObject.CompareTag("WeaponPickup")) {
+            WeaponPickup weapon = collider.gameObject.GetComponent<WeaponPickup>();
+            WeaponPlaceholder playerWeapon = playerLocation.Find("WeaponPlaceholder").gameObject.GetComponent<WeaponPlaceholder>();
 
             // Spawn the 'picked up' weapon in the player's hands
-            bool picked_up = player_weapon.SpawnWeapon(weapon.type);
+            bool pickedUp = playerWeapon.SpawnWeapon(weapon.type);
 
             // Destroy the pickup
-            if (picked_up) {
+            if (pickedUp) {
                 Destroy(collider.gameObject);
             }
         }
