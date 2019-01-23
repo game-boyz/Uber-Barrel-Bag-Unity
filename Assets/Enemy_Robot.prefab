@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 1
+  health: 20
 --- !u!50 &1680754955996523183
 Rigidbody2D:
   serializedVersion: 4

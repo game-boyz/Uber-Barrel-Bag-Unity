@@ -23,7 +23,8 @@ public class Projectile : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
         // Deal damage if necessary
         if (collision.gameObject.CompareTag("Enemy")) {
-            collision.gameObject.GetComponent<EnemyMovement>().DealDamage(damage);
+            Debug.Log("I'm helping!@");
+            collision.gameObject.GetComponent<EnemyController>().DealDamage(damage);
         }
 
         // Destroy bullet
