@@ -18,7 +18,7 @@ public class WeaponPistol : Weapon {
     protected override void Fire() {
 
         // Grab the bullet placeholder from the weapon transform
-        GameObject bulletPosition = transform.Find("Bullet_Position").gameObject;
+        GameObject bulletPosition = transform.Find("BulletPosition").gameObject;
 
         if (bulletPosition != null) {
             // Create a new bullet at the placeholder's position
